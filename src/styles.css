@@ -3,7 +3,6 @@
 }
 
 body {
-    background-color: rebeccapurple;
     font-family: sans-serif;
 }
 
@@ -53,7 +52,41 @@ a {
 
 .mainContent {
     border: 1px solid blue;
+    padding: 24px;
 }
+
+.mainContentHeader {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 24px;
+}
+
+.addProjectButton {
+
+}
+
+.addProjectButton:hover {
+    cursor: pointer;
+}
+
+.projectsContainer {
+    display: flex;
+    gap: 32px;
+    flex-wrap: wrap;
+}
+
+.project {
+    border: 2px solid black;
+    width: 250px;
+    height: 250px;
+}
+
+.project:hover {
+    cursor: pointer;
+}
+
+
+
 
 
 /* Footer */

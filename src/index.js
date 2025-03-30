@@ -20,14 +20,14 @@ class Project {
     }
 }
 
-const todoListController = function() {
+const todoListLogic = function() {
 
     return {};
 }();
 
 
 // First worry about getting projects to work and show on display, then to-do's
-const projectsController = function() {
+const projectsLogic = function() {
     const newProject = function(projectName) {
         const project = new Project(projectName);
         return project;
@@ -35,16 +35,21 @@ const projectsController = function() {
     return {newProject};
 }();
 
-// Change to displayProjectsController
-const displayController = function() {
+const displayProjects = function() {
     const projectsContainer = document.querySelector(".projectsContainer");
     const addProject = function(project) {
         const newProject = document.createElement("div");
         newProject.setAttribute("class", project.dataId);
+        newProject.setAttribute("class", ".project")
         newProject.textContent = project.projectName;
         projectsContainer.appendChild(newProject);
     } 
     return {addProject};
 } ();
 
-// Add a todoListDisplayController
+const displayTodoLists = function() {
+
+} ();
+
+
+displayProjects.addProject("Testing title");
