@@ -6,106 +6,38 @@ body {
     font-family: sans-serif;
 }
 
-/* I don't like the scrolling to get to the footer so I could fix that later */
+.container {
+    border: 2px solid blue;
+    height: 100vh;
+    width: 100%;
+}
+
+.header, .sidebar, .main-content, .footer {
+    border: 2px solid black;
+}
+
 .container {
     display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr 7fr 1fr;
-    /* display: flex;
-    flex-direction: column; */
+    grid-template-columns: 1fr 4fr;
+    grid-template-rows: 1fr 5fr 1fr;
 }
-
-/* Header */
 
 .header {
-    display: flex;
-    border: 2px solid black;
-    align-items: center;
-    justify-content: space-between;
+    grid-column: 1 / 3;
+    grid-row: 1 / 2;
 }
 
-.headerLeft {
-    margin:  24px 0 24px 24px;
-    font-size: 32px;
+.sidebar {
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
 }
 
-.headerLinksContainer {
-    display: flex;
-    gap: 24px;
-    margin-right: 24px;
+.main-content {
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
 }
-
-.headerLinks {
-    font-size: 24px;
-}
-
-ul {
-    list-style-type: none;
-}
-
-a {
-    text-decoration: none;
-    color: inherit;
-}
-
-/* Main Content */ 
-
-.mainContent {
-    border: 1px solid blue;
-    padding: 24px;
-}
-
-.mainContentHeader {
-    display: flex;
-    gap: 8px;
-    margin-bottom: 24px;
-}
-
-.addProjectButton {
-
-}
-
-.addProjectButton:hover {
-    cursor: pointer;
-}
-
-.projectsContainer {
-    display: flex;
-    gap: 32px;
-    flex-wrap: wrap;
-}
-
-.project {
-    border: 2px solid black;
-    width: 250px;
-    height: 250px;
-}
-
-.project:hover {
-    cursor: pointer;
-}
-
-
-
-
-
-/* Footer */
 
 .footer {
-    border: 2px solid black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 8px;
-}
-
-.footerText {
-    font-size: 24px;
-}
-
-.githubIcon {
-    width: 32px;
-    height: 32px;
-    border-radius: 32px;
-    background-image: url(images/github.svg);
+    grid-column: 1 / 3;
+    grid-row: 3 / 4;
 }
