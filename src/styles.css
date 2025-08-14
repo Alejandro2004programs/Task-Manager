@@ -2,15 +2,15 @@
     margin: 0;
 }
 
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
 body {
     font-family: sans-serif;
 }
 
-.container {
-    border: 2px solid blue;
-    height: 100vh;
-    width: 100%;
-}
+/* Set up for grid layout */
 
 .header, .sidebar, .main-content, .footer {
     border: 2px solid black;
@@ -20,11 +20,13 @@ body {
     display: grid;
     grid-template-columns: 1fr 4fr;
     grid-template-rows: 1fr 5fr 1fr;
+    height: 100vh;
 }
 
 .header {
     grid-column: 1 / 3;
     grid-row: 1 / 2;
+    height: 100%;
 }
 
 .sidebar {
@@ -40,4 +42,82 @@ body {
 .footer {
     grid-column: 1 / 3;
     grid-row: 3 / 4;
+    height: 100%;
+}
+
+
+
+/* Header Styling */
+
+.header {
+    display: flex;
+    align-items: center;
+}
+
+.title {
+    margin-left: 32px;
+}
+
+/* Sidebar Styling */
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.sidebarHeader {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.addProjectButton {
+    border-radius: 16px;
+}
+
+.addProjectButton:hover {
+    cursor: pointer;
+}
+
+.projectsContainer {
+    
+}
+
+/* Main Content Styling */
+
+.mainContent {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.mainContentHeader {
+    display: flex;
+    gap: 8px;
+    margin-top: 8px;
+    margin-left: 8px;
+}
+
+.todosContainer {
+    margin: 8px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 16px;
+}
+
+.addTodoButton {
+    border-radius: 16px;
+}
+
+.addTodoButton:hover {
+    cursor: pointer;
+}
+
+.todo {
+    border: 2px solid blue;
+    height: 200px;
 }
