@@ -1,43 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Todo List</title>
-</head>
-<body>
-
+  </head>
+  <body>
     <div class="container">
-        <div class="header">
-            <p class="title">Todo List</p>
+      <div class="header">
+        <p>Todo List</p>
+      
+      </div>
+      <div class="sidebar">
+        <div class="sidebarHeader">
+          <p>Projects</p>
+          <button class="projectDialogButton">+</button>
         </div>
-        <div class="sidebar">
-            <div class="sidebarHeader">
-                <p>Projects</p>
-                <button class="addProjectButton">+</button>
-            </div>
-            <div class="projectsContainer">
-            </div>
+        <div class="projectsContainer">
+          <button class="projectButton">Default</button>
         </div>
-        <div class="mainContent">
-            <div class="mainContentHeader">
-                <p>Todo's</p>
-                <button class="addTodoButton">+</button>
-            </div>
-            <div class="todosContainer">
-                <div class="todo"></div>
-                <div class="todo"></div>
-                <div class="todo"></div>
-                <div class="todo"></div>
-                <div class="todo"></div>
-                <div class="todo"></div>
-                <div class="todo"></div>
-                <div class="todo"></div>
-            </div>
+      </div>
+      <div class="mainContent">
+        <div class="mainContentHeader">
+          <div>Default Todo's</div>
+          <button>+</button>
         </div>
-        <div class="footer">
-            <p>Alejandro Alvarez</p>
+        <div class="todoListContainer">
+          <div class="todo">
+            <p> - Todo Title</p>
+            <p>Todo priority</p>
+            <p>Todo due date</p>
+            <img class="todoRemoveIcon" src="images/checkmarkIcon.jpg" alt="X">
+          </div>
+          
         </div>
+      </div>
+      <div class="footer">
+
+      </div>
+      <dialog class="projectDialog">
+        <form class="projectForm">
+          <div>
+            <label for="projectName">Project Name: </label>
+            <input type="text" id="projectName" name="projectName">
+          </div>
+          <div>
+            <button class="cancelProjectButton">Cancel</button>
+            <button class="addProjectButton">Add Project</button>
+          </div>
+        </form>
+      </dialog>
     </div>
-</body>
+    </div>
+  </body>
 </html>

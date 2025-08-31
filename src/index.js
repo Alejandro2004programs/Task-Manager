@@ -1,53 +1,103 @@
 import "./styles.css";
+import Todo from "./todo.js";
+import Project from "./project.js";
+import {DOM} from "./dom.js";
 
-console.log("testing");
-
-class Todo {
-    constructor(title, description, dueDate, priority) {
-        this.title = title;
-        this.description = description;
-        this.dueDate = dueDate;
-        this.priority = priority;
-        this.dataId = crypto.randomUUID();
-    }
-}
-
-class Project {
-    constructor(projectName) {
-        this.projectName = projectName;
-        this.todoList = [];
-        this.dataId = crypto.randomUUID();
-    }
-}
-
-const projects = [];
-
-function addProject(projectName) {
+function createProject(projectName) {
     let projectToAdd = new Project(projectName);
     projects.push(projectToAdd);
 }
 
-function addTodo(project, title, description, dueDate, priority) {
-    let todo = new Todo(title, description, dueDate, priority);
-    project.todoList.push(todo);
+function createTodo(project, title, description, dueDate, priority) {
+    const todo = new Todo(title, description, dueDate, priority);
+    project.addTodo(todo);
+    return todo;
 }
 
+const projects = [];
+createProject("Default");
+createTodo(projects[0], "Random Title", "random description", "random due date", "random priority");
 
 function displayMostRecentProject() {
-    let projectContainer = document.querySelector(".projectsContainer");
-    let currentProject = document.createElement("button");
-    let project = projects.at(-1);
-    currentProject.textContent = project.projectName;
-    projectContainer.appendChild(currentProject);
-}
-
-function displayDefaultTodos() {
+    const projectsContainer = document.querySelector(".projectsContainer");
+    let currentProjectDOM = document.createElement("button");
+    const currentProjectDataId = projects.at(-1).dataId;
+    currentProjectDOM.setAttribute("data-id", currentProjectDataId);
+    let currentProjectJS = projects.at(-1);
+    let currentProjectName = currentProjectJS.projectName;
+    currentProjectDOM.textContent = currentProjectName;
+    projectsContainer.appendChild(currentProjectDOM);
     
+    currentProjectDOM.addEventListener("click", () => {
+        const todoListContainer = document.querySelector(".todoListContainer");
+        todoListContainer.replaceChildren();
+        const currentTodoList = projects.at(-1).todoList;
+        for(let i = 0; i < projects.length.todoList - 1; i++) {
+            const currentTodoDOM = document.createElement("div");
+            currentTodo.setAttribute("class", ".todo");
+            const currentTodo = currentTodoList[i];
+            const todoTitleDOM = document.createElement("p");
+            todoTitleDOM.textContent = currentTodo.title;
+            const todoPriorityDOM = document.createElement("p");
+            todoPriorityDOM.textContent = currentTodo.priority;
+            const todoDueDateDOM = document.createElement("p");
+            todoDueDateDOM.textContent = currentTodo.dueDate;
+            currentTodoDOM.appendChild(todoTitleDOM);
+            currentTodoDOM.appendChild(todoPriorityDOM);
+            currentTodoDOM.appendChild(todoDueDateDOM);
+            const todoRemoveIcon = document.createElement("img");
+            todoRemoveIcon.setAttribute("src", "images/checkmarkIcon.jpg");
+            todoRemoveIcon.setAttribute("class", "todoRemoveIcon");
+            todoRemoveIcon.setAttribute("alt", "X");
+            currentTodoDOM.appendChild(todoRemoveIcon);
+            todoListContainer.appendChild(currentTodoDOM);
+        }
+    });
 }
 
-addProject("Default");
-displayMostRecentProject();
+function setUpProjectDialog() {
+    const projectDialogButton = document.querySelector(".projectDialogButton");
+    const projectDialog = document.querySelector(".projectDialog");
+    const projectForm = document.querySelector(".projectForm");
+    const addProjectButton = document.querySelector(".addProjectButton");
+    const cancelProjectButton = document.querySelector(".cancelProjectButton");
 
-addTodo(projects[0], "wash clothes", "finish washing clothes", "tonight", true);
-console.log(projects);
-console.log(projects.at(-1));
+    projectDialogButton.addEventListener("click", () => {
+        projectDialog.showModal();
+    });
+
+    cancelProjectButton.addEventListener("click", () => {
+        projectDialog.close();
+    });
+
+    addProjectButton.addEventListener("click", (event) => {
+        event.preventDefault();
+        const projectName = projectForm.projectName.value;
+        createProject(projectName);
+        displayMostRecentProject();
+        projectDialog.close();
+    });
+
+
+}
+
+
+function setUpDefaultButton() {
+    const defaultProjectButton = document.querySelector(".projectButton");
+    const defaultProjectId = projects[0].dataId;
+    console.log(defaultProjectId);
+    defaultProjectButton.setAttribute("data-id", defaultProjectId);
+    defaultProjectButton.getAttribute("data-id");
+}
+
+
+
+setUpProjectDialog();
+setUpDefaultButton();
+
+
+window.debug = {
+  projects,
+  createProject,
+  createTodo
+};

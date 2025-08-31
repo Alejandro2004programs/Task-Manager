@@ -7,26 +7,26 @@
 }
 
 body {
-    font-family: sans-serif;
+    font-family: Verdana, sans-serif;
 }
 
-/* Set up for grid layout */
-
-.header, .sidebar, .main-content, .footer {
-    border: 2px solid black;
-}
+/* Grid layout */
 
 .container {
     display: grid;
-    grid-template-columns: 1fr 4fr;
+    height: 100dvh;
+    width: 100dvw;
     grid-template-rows: 1fr 5fr 1fr;
-    height: 100vh;
+    grid-template-columns: 1fr 3fr;
+}
+
+.header, .sidebar, .maincontent, .footer {
+    border: 2px solid black;
 }
 
 .header {
     grid-column: 1 / 3;
-    grid-row: 1 / 2;
-    height: 100%;
+    grid-row:  1 / 2;
 }
 
 .sidebar {
@@ -34,7 +34,7 @@ body {
     grid-row: 2 / 3;
 }
 
-.main-content {
+.mainContent {
     grid-column: 2 / 3;
     grid-row: 2 / 3;
 }
@@ -42,82 +42,77 @@ body {
 .footer {
     grid-column: 1 / 3;
     grid-row: 3 / 4;
-    height: 100%;
 }
 
+/* Header */
 
-
-/* Header Styling */
-
-.header {
-    display: flex;
-    align-items: center;
-}
-
-.title {
-    margin-left: 32px;
-}
-
-/* Sidebar Styling */
+/* Sidebar */
 
 .sidebar {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
+
 }
 
 .sidebarHeader {
     display: flex;
     justify-content: center;
-    gap: 8px;
-    margin-top: 8px;
+    gap: 16px;
+    margin-top: 16px;
 }
 
-.addProjectButton {
-    border-radius: 16px;
-}
-
-.addProjectButton:hover {
-    cursor: pointer;
-}
-
-.projectsContainer {
-    
-}
-
-/* Main Content Styling */
+/* Main Content */
 
 .mainContent {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
+    display: grid;
+    grid-template-rows: 1fr 6fr;
+    grid-template-columns: 1fr;
 }
 
 .mainContentHeader {
     display: flex;
-    gap: 8px;
-    margin-top: 8px;
-    margin-left: 8px;
-}
-
-.todosContainer {
-    margin: 8px;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    grid-template-rows: 1fr 1fr 1fr;
+    justify-content: flex-start;
     gap: 16px;
+    margin: 16px;
 }
 
-.addTodoButton {
-    border-radius: 16px;
+/* Footer */
+
+
+/* Todo CSS */
+
+.todo {
+    display: flex;
+    justify-content: flex-start;
+    border: 2px solid black;
 }
 
-.addTodoButton:hover {
-    cursor: pointer;
+
+
+/* Todo Container */
+
+.todoListContainer {
+    padding: 16px;
 }
 
 .todo {
-    border: 2px solid blue;
-    height: 200px;
+    height: 50px;
+    gap: 16px;
 }
+
+.todoRemoveIcon {
+    height: 32px;
+    width: 32px;
+    border: 2px solid black;
+    border-radius: 32px;
+}
+
+/* Projects Container  */
+
+.projectsContainer {
+    display: flex;
+    flex-direction: column; 
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 16px;
+    gap: 8px;
+}
+
