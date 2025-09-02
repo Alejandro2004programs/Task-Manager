@@ -9,6 +9,9 @@ createTodo(projectsArray[0], "Finish Todo List", "Description goes here", "Due d
 createProject("Project 2");
 createTodo(projectsArray[1], "Keep working on the todo list", "desc.", "due date here", "Priority: medium");
 createTodo(projectsArray[1], "Just testing multiple todos", "desc.", "due date here", "Priority: low");
+createTodo(projectsArray[1], "Just testing multiple todos", "desc.", "due date here", "Priority: low");
+createTodo(projectsArray[1], "Just testing multiple todos", "desc.", "due date here", "Priority: low");
+
 DOM.renderProjects();
 
 
