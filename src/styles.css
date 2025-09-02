@@ -1,3 +1,5 @@
+/* Eventually, change checkmark image to a trash icon (bc i will be removing the todo completely and change to svg */
+
 * {
     margin: 0;
 }
@@ -46,6 +48,12 @@ body {
 
 /* Header */
 
+.headerText {
+    font-size: 32px;
+    font-weight: 700;
+
+}
+
 /* Sidebar */
 
 .sidebar {
@@ -57,6 +65,10 @@ body {
     justify-content: center;
     gap: 16px;
     margin-top: 16px;
+}
+
+.sidebarHeaderText {
+    font-size: 24px;
 }
 
 /* Main Content */
@@ -81,8 +93,16 @@ body {
 
 .todo {
     display: flex;
-    justify-content: flex-start;
+    align-items: center;
+    justify-content: space-between;
     border: 2px solid black;
+    padding: 16px;
+    flex-wrap: wrap;
+}
+
+.todoRight {
+    display: flex;
+    gap: 16px;
 }
 
 
@@ -94,7 +114,7 @@ body {
 }
 
 .todo {
-    height: 50px;
+    min-height: 50px;
     gap: 16px;
 }
 

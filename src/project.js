@@ -12,4 +12,11 @@ class Project {
     }
 }
 
-export default Project;
+const projectsArray = [];
+
+function createProject(projectName) {
+    let projectToAdd = new Project(projectName);
+    projectsArray.push(projectToAdd);
+}
+
+export {Project, projectsArray, createProject};
