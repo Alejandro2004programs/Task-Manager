@@ -10,21 +10,40 @@ const DOM =  {
             projectButton.setAttribute("class", ".projectButton");
             projectButton.setAttribute("data-id", projectsArray[i].dataId);
             projectsContainer.appendChild(projectButton);
+            projectButton.addEventListener("click", () => {
+                this.renderTodos(projectsArray[i]);
+            });
         }
     },
     renderTodos(project) {
         const todoContainer = document.querySelector(".todoListContainer");
         todoContainer.replaceChildren();
-
-        for(let i = 0; i <= project.TodoList; i++) {
+        for(let i = 0; i <= project.todoList.length - 1; i++) {
+            const currentTodo = project.todoList[i];
             const todoDiv = document.createElement("div");
             const todoLeft = document.createElement("div");
             const todoRight = document.createElement("div");
             todoLeft.setAttribute("class", "todoLeft");
             todoRight.setAttribute("class", "todoRight");
+            todoDiv.setAttribute("class", "todo");
+            const todoTitle = document.createElement("p");
+            const todoDetails = document.createElement("button");
+            const todoPriority = document.createElement("p");
+            const todoDueDate = document.createElement("p");
+            const todoRemove = document.createElement("button");
+            todoTitle.textContent = currentTodo.title;
+            todoDetails.textContent = "Details";
+            todoPriority.textContent = currentTodo.priority;
+            todoDueDate.textContent = currentTodo.dueDate;
+            todoRemove.textContent = "✓";
+            todoLeft.appendChild(todoTitle);
+            todoRight.appendChild(todoDetails);
+            todoRight.appendChild(todoPriority);
+            todoRight.appendChild(todoDueDate);
+            todoRight.appendChild(todoRemove);
             todoDiv.appendChild(todoLeft);
             todoDiv.appendChild(todoRight);
-            
+            todoContainer.appendChild(todoDiv);
         }
     }
 };
@@ -52,6 +71,7 @@ function setUpProjectDialog() {
         projectDialog.close();
     });
 }
+
 
 
 export {DOM, setUpProjectDialog};
