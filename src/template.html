@@ -22,8 +22,10 @@
       </div>
       <div class="mainContent">
         <div class="mainContentHeader">
-          <div>Default Todo's</div>
-          <button>+</button>
+          <div class="todoSectionHeader">Default Todo's</div>
+          <div>
+            <button class="todoDialogButton">+</button>
+          </div>
         </div>
         <div class="todoListContainer">
           <div class="todo">
@@ -44,14 +46,48 @@
 
       </div>
       <dialog class="projectDialog">
-        <form class="projectForm">
+        <form method="dialog" class="projectForm">
           <div>
-            <label for="projectName">Project Name: </label>
-            <input type="text" id="projectName" name="projectName">
+            <label for="projectName">*Project Name: </label>
+            <input type="text" id="projectName" name="projectName" required>
           </div>
           <div>
-            <button class="cancelProjectButton">Cancel</button>
-            <button class="addProjectButton">Add Project</button>
+            <button type="button" class="cancelProjectButton">Cancel</button>
+            <button type="submit" class="addProjectButton">Add Project</button>
+          </div>
+        </form>
+      </dialog>
+      <dialog class="todoDialogElement">
+        <form method="dialog" class="todoForm">         
+          <div>
+            <label for="todoFormTitle">*Todo Title: </label>
+            <input type="text" id="todoFormTitle" name="todoFormTitle" required>
+          </div>
+          <div>
+            <div>
+              <input type="radio" id="priorityHigh" name="todoFormPriority" value="high">
+              <label for="priorityHigh">Priority: high</label>
+            </div>
+            <div>
+              <input type="radio" id="priorityMedium" name="todoFormPriority" value="medium">
+              <label for="priorityMedium">Priority: medium</label>
+            </div>
+            <div>
+              <input type="radio" id="priorityLow" name="todoFormPriority" value="low" checked>
+              <label for="priorityLow">Priority: low</label>
+            </div>
+          </div>
+          <div>
+            <label for="todoFormDueDate">*Due date: </label>
+            <input type="date" id="todooFormDueDate" name="todoFormDueDate" required>   
+          </div>
+          <div>
+            <label for="todoFormDetails">*Details: </label>
+            <textarea id="todoFormDetails" name="todoFormDetails" required></textarea>
+          </div>
+          <div>
+            <button type="button" class="todoDialogCancelButton">Cancel</button>
+            <button type="submit" class="addTodoButton">Add Todo</button>
           </div>
         </form>
       </dialog>

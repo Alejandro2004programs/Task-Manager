@@ -1,4 +1,5 @@
-import {createProject, projectsArray, Project} from "./project.js";
+import {createProject, projectsArray, Project, findSelectedProject} from "./project.js";
+import {createTodo, Todo} from "./todo.js";
 
 const DOM =  {
     renderProjects() {
@@ -63,7 +64,7 @@ function setUpProjectDialog() {
         projectDialog.close();
     });
 
-    addProjectButton.addEventListener("click", (event) => {
+    projectDialog.addEventListener("submit", (event) => {
         event.preventDefault();
         const projectName = projectForm.projectName.value;
         createProject(projectName);
@@ -72,7 +73,32 @@ function setUpProjectDialog() {
     });
 }
 
+function setUpTodosDialog() {
+    const todoDialogButton = document.querySelector(".todoDialogButton");
+    const todoDialogElement = document.querySelector(".todoDialogElement");
+    const todoDialogCancelButton = document.querySelector(".todoDialogCancelButton");
+    const addTodoButton = document.querySelector(".addTodoButton");
+    const todoForm = document.querySelector(".todoForm");
+
+    todoDialogButton.addEventListener("click", () => {
+        todoDialogElement.showModal();
+    });
+
+    todoDialogCancelButton.addEventListener("click", () => {
+        todoDialogElement.close()
+    });
+    todoForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const todoName = todoForm.todoFormTitle.value;
+        const todoDescription = todoForm.todoFormDetails.value;
+        const todoDueDate = todoForm.todoFormDueDate.value;
+        const todoPriority = "Priority: " + todoForm.todoFormPriority.value;
+        createTodo(findSelectedProject(), todoName, todoDescription, todoDueDate, todoPriority);
+        DOM.renderTodos(findSelectedProject());
+        todoDialogElement.close();
+    });
+}
 
 
-export {DOM, setUpProjectDialog};
+export {DOM, setUpProjectDialog, setUpTodosDialog};
 

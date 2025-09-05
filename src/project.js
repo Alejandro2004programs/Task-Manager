@@ -19,4 +19,14 @@ function createProject(projectName) {
     projectsArray.push(projectToAdd);
 }
 
-export {Project, projectsArray, createProject};
+function findSelectedProject () {
+    const todoSectionHeader = document.querySelector(".todoSectionHeader");
+    const currentProjectName = todoSectionHeader.textContent.split(" ")[0];
+    for(let i = 0; i <= projectsArray.length; i++) {
+        if(projectsArray[i].projectName === currentProjectName) {
+            return projectsArray[i];
+        }
+    }
+}
+
+export {Project, projectsArray, createProject, findSelectedProject};
