@@ -8,7 +8,7 @@ const DOM =  {
         for(let i = 0; i <= projectsArray.length - 1; i++) {
             const projectButton = document.createElement("button");
             projectButton.textContent = projectsArray[i].projectName;
-            projectButton.setAttribute("class", ".projectButton");
+            projectButton.setAttribute("class", "projectButton");
             projectButton.setAttribute("data-id", projectsArray[i].dataId);
             projectsContainer.appendChild(projectButton);
             projectButton.addEventListener("click", () => {
@@ -17,21 +17,33 @@ const DOM =  {
         }
     },
     renderTodos(project) {
+        const mainContentHeader = document.querySelector(".mainContentHeader");
+        const todoHeader = document.querySelector(".todoSectionHeader");
+        mainContentHeader.removeChild(todoHeader);
+        const newTodoHeader = document.createElement("div");
+        newTodoHeader.setAttribute("class", "todoSectionHeader");
+        newTodoHeader.textContent = project.projectName + " Todo's";
+        const todoAddButtonContainer = document.querySelector(".projectDialogButtonContainer");
+        mainContentHeader.insertBefore(newTodoHeader, todoAddButtonContainer);
         const todoContainer = document.querySelector(".todoListContainer");
-        todoContainer.replaceChildren();
+        todoContainer.replaceChildren();        
         for(let i = 0; i <= project.todoList.length - 1; i++) {
             const currentTodo = project.todoList[i];
             const todoDiv = document.createElement("div");
             const todoLeft = document.createElement("div");
             const todoRight = document.createElement("div");
+            const todoId = currentTodo.dataId;
+            todoDiv.setAttribute("data-id", todoId);
             todoLeft.setAttribute("class", "todoLeft");
             todoRight.setAttribute("class", "todoRight");
             todoDiv.setAttribute("class", "todo");
+
             const todoTitle = document.createElement("p");
             const todoDetails = document.createElement("button");
             const todoPriority = document.createElement("p");
             const todoDueDate = document.createElement("p");
             const todoRemove = document.createElement("button");
+            todoRemove.setAttribute("class", "removeTodoButton");
             todoTitle.textContent = currentTodo.title;
             todoDetails.textContent = "Details";
             todoPriority.textContent = currentTodo.priority;
@@ -45,6 +57,11 @@ const DOM =  {
             todoDiv.appendChild(todoLeft);
             todoDiv.appendChild(todoRight);
             todoContainer.appendChild(todoDiv);
+            todoRemove.addEventListener("click", () => {
+                todoContainer.removeChild(todoDiv);
+                const currentProject = findSelectedProject();
+                currentProject.removeTodo(todoId);
+            });
         }
     }
 };
