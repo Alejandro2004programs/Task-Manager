@@ -1,5 +1,6 @@
-import {createProject, projectsArray, Project, findSelectedProject} from "./project.js";
+import {createProject, Project, findSelectedProject} from "./project.js";
 import {createTodo, Todo} from "./todo.js";
+import {projectsArray, getLocalStorageArray, updateLocalStorageArray} from "./storage.js";
 
 const DOM =  {
     renderProjects() {
@@ -37,7 +38,6 @@ const DOM =  {
             todoLeft.setAttribute("class", "todoLeft");
             todoRight.setAttribute("class", "todoRight");
             todoDiv.setAttribute("class", "todo");
-
             const todoTitle = document.createElement("p");
             const todoDetails = document.createElement("button");
             const todoPriority = document.createElement("p");
@@ -61,6 +61,7 @@ const DOM =  {
                 todoContainer.removeChild(todoDiv);
                 const currentProject = findSelectedProject();
                 currentProject.removeTodo(todoId);
+                updateLocalStorageArray()
             });
         }
     }
@@ -86,6 +87,7 @@ function setUpProjectDialog() {
         const projectName = projectForm.projectName.value;
         createProject(projectName);
         DOM.renderProjects();
+        updateLocalStorageArray();
         projectDialog.close();
     });
 }
@@ -112,10 +114,24 @@ function setUpTodosDialog() {
         const todoPriority = "Priority: " + todoForm.todoFormPriority.value;
         createTodo(findSelectedProject(), todoName, todoDescription, todoDueDate, todoPriority);
         DOM.renderTodos(findSelectedProject());
+        updateLocalStorageArray();
         todoDialogElement.close();
     });
 }
 
+function setUpProjectDeleteButton() {
+    const projectDeleteButton = document.querySelector(".projectDeleteButton");
+    projectDeleteButton.addEventListener("click", () => {
+        const currentProjectName = document.querySelector(".todoSectionHeader").textContent.split(" ")[0];
+        projectsArray.splice(0,projectsArray.length,...projectsArray.filter(project => project.projectName !== currentProjectName));
+        DOM.renderProjects();
+        if(projectsArray.length != 0) {
+            DOM.renderTodos(projectsArray[0]);
+        }
+        updateLocalStorageArray();
+    });
+}
 
-export {DOM, setUpProjectDialog, setUpTodosDialog};
+
+export {DOM, setUpProjectDialog, setUpTodosDialog, setUpProjectDeleteButton};
 

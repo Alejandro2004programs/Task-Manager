@@ -1,3 +1,5 @@
+import {projectsArray} from "./storage.js";
+
 class Project {
     constructor(projectName) {
         this.projectName = projectName;
@@ -11,8 +13,6 @@ class Project {
         this.todoList = this.todoList.filter(todo => todo.dataId !== dataId);
     }
 }
-
-const projectsArray = [];
 
 function createProject(projectName) {
     let projectToAdd = new Project(projectName);
@@ -29,4 +29,4 @@ function findSelectedProject () {
     }
 }
 
-export {Project, projectsArray, createProject, findSelectedProject};
+export {Project, createProject, findSelectedProject};

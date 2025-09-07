@@ -1,14 +1,22 @@
 import "./styles.css";
 import {Todo, createTodo} from "./todo.js";
-import {Project, createProject, projectsArray, findSelectedProject} from "./project.js";
-import {DOM, setUpProjectDialog, setUpTodosDialog} from "./dom.js";
+import {Project, createProject, findSelectedProject} from "./project.js";
+import {DOM, setUpProjectDialog, setUpTodosDialog, setUpProjectDeleteButton} from "./dom.js";
+import {updateLocalStorageArray, getLocalStorageArray, projectsArray} from "./storage.js";
 
-createProject("Default");
-createTodo(projectsArray[0], "Finish Todo List", "Description goes here", "YYYY-MM-DD", "Priority: high");
+getLocalStorageArray();
+if(projectsArray.length === 0) {
+  createProject("Default");
+  createTodo(projectsArray[0], "Finish Todo List", "Description goes here", "YYYY-MM-DD", "Priority: high");
+}
+
+updateLocalStorageArray();
 setUpProjectDialog();
 setUpTodosDialog();
+setUpProjectDeleteButton();
 DOM.renderProjects();
 DOM.renderTodos(projectsArray[0]);
+
 
 window.debug = {
   projectsArray,
