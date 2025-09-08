@@ -85,7 +85,7 @@ function setUpProjectDialog() {
     projectDialog.addEventListener("submit", (event) => {
         event.preventDefault();
         const projectName = projectForm.projectName.value;
-        createProject(projectName);
+        createProject(projectName.replaceAll(" ", ""));
         DOM.renderProjects();
         updateLocalStorageArray();
         projectDialog.close();
@@ -125,8 +125,12 @@ function setUpProjectDeleteButton() {
         const currentProjectName = document.querySelector(".todoSectionHeader").textContent.split(" ")[0];
         projectsArray.splice(0,projectsArray.length,...projectsArray.filter(project => project.projectName !== currentProjectName));
         DOM.renderProjects();
-        if(projectsArray.length != 0) {
+        if(projectsArray.length !== 0) {
             DOM.renderTodos(projectsArray[0]);
+        }
+        else {
+            const todoListContainer = document.querySelector(".todoListContainer");
+            todoListContainer.replaceChildren();
         }
         updateLocalStorageArray();
     });
