@@ -3,12 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Todo List</title>
+    <title>Task Manager</title>
   </head>
   <body>
     <div class="container">
       <div class="header">
-          <p class="headerText">Todo List</p>          
+          <p class="headerText">Task Manager</p>          
       </div> 
       <div class="sidebar">
         <div>
@@ -43,23 +43,23 @@
       </div>
       <dialog class="projectDialog">
         <form method="dialog" class="projectForm">
-          <div>
-            <label for="projectName">*Project Name: </label>
+          <div class="projectNameInputContainer">
+            <label for="projectName" class="projectNameLabel">*Project Name: </label>
             <input type="text" id="projectName" name="projectName" required>
           </div>
           <div>
             <button type="button" class="cancelProjectButton">Cancel</button>
-            <button type="submit" class="addProjectButton">Add Project</button>
+            <button type="submit" class="addProjectButton">Add</button>
           </div>
         </form>
       </dialog>
       <dialog class="todoDialogElement">
         <form method="dialog" class="todoForm">         
-          <div>
+          <div class="todoFormDiv">
             <label for="todoFormTitle">*Todo Title: </label>
             <input type="text" id="todoFormTitle" name="todoFormTitle" required>
           </div>
-          <div>
+          <div class="todoFormDiv">
             <div>
               <input type="radio" id="priorityHigh" name="todoFormPriority" value="high">
               <label for="priorityHigh">Priority: high</label>
@@ -73,17 +73,17 @@
               <label for="priorityLow">Priority: low</label>
             </div>
           </div>
-          <div>
+          <div class="todoFormDiv">
             <label for="todoFormDueDate">*Due date: </label>
             <input type="date" id="todooFormDueDate" name="todoFormDueDate" required>   
           </div>
-          <div>
+          <div class="todoFormDiv">
             <label for="todoFormDetails">*Details: </label>
             <textarea id="todoFormDetails" name="todoFormDetails" required></textarea>
           </div>
-          <div>
+          <div class="todoSubmitDiv">
             <button type="button" class="todoDialogCancelButton">Cancel</button>
-            <button type="submit" class="addTodoButton">Add Todo</button>
+            <button type="submit" class="addTodoButton">Add</button>
           </div>
         </form>
       </dialog>

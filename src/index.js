@@ -7,7 +7,7 @@ import {updateLocalStorageArray, getLocalStorageArray, projectsArray} from "./st
 getLocalStorageArray();
 if(projectsArray.length === 0) {
   createProject("Default");
-  createTodo(projectsArray[0], "Finish Todo List", "Description goes here", "YYYY-MM-DD", "Priority: high");
+  createTodo(projectsArray[0], "Finish Todo List", "Description goes here", "yyyy-mm-dd", "Priority: medium");
 }
 
 updateLocalStorageArray();
@@ -23,4 +23,5 @@ window.debug = {
   createProject,
   createTodo
 };
+
 

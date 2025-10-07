@@ -44,7 +44,8 @@ const DOM =  {
             const todoDueDate = document.createElement("p");
             const todoRemove = document.createElement("button");
             todoRemove.setAttribute("class", "removeTodoButton");
-            todoTitle.textContent = currentTodo.title;
+            todoPriority.setAttribute("class", "todoPriority");
+            todoTitle.textContent = "• " + currentTodo.title;
             todoDetails.textContent = "Details";
             todoPriority.textContent = currentTodo.priority;
             todoDueDate.textContent = currentTodo.dueDate;
@@ -66,6 +67,7 @@ const DOM =  {
         }
     }
 };
+
 
 function setUpProjectDialog() {
     const projectDialogButton = document.querySelector(".projectDialogButton");
@@ -108,14 +110,19 @@ function setUpTodosDialog() {
     });
     todoForm.addEventListener("submit", (event) => {
         event.preventDefault();
-        const todoName = todoForm.todoFormTitle.value;
-        const todoDescription = todoForm.todoFormDetails.value;
-        const todoDueDate = todoForm.todoFormDueDate.value;
-        const todoPriority = "Priority: " + todoForm.todoFormPriority.value;
-        createTodo(findSelectedProject(), todoName, todoDescription, todoDueDate, todoPriority);
-        DOM.renderTodos(findSelectedProject());
-        updateLocalStorageArray();
-        todoDialogElement.close();
+        if(projectsArray.length != 0) {
+            const todoName = todoForm.todoFormTitle.value;
+            const todoDescription = todoForm.todoFormDetails.value;
+            const todoDueDate = todoForm.todoFormDueDate.value;
+            const todoPriority = "Priority: " + todoForm.todoFormPriority.value;
+            createTodo(findSelectedProject(), todoName, todoDescription, todoDueDate, todoPriority);
+            DOM.renderTodos(findSelectedProject());
+            updateLocalStorageArray();
+            todoDialogElement.close();
+        }
+        else {
+            alert("No project selected");
+        }
     });
 }
 
@@ -131,6 +138,7 @@ function setUpProjectDeleteButton() {
         else {
             const todoListContainer = document.querySelector(".todoListContainer");
             todoListContainer.replaceChildren();
+            
         }
         updateLocalStorageArray();
     });
